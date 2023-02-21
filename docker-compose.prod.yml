@@ -1,0 +1,33 @@
+version: '3.8'
+
+services:
+  db:
+    image: mongo:5
+    restart: always
+    ports:
+      - "27017:27017"
+    environment:
+      MONGODB_DATABASE: emailDB
+    container_name: EmailDB
+    volumes:
+      - ./mongo:/data/db
+
+  portfolioserverapp:
+    depends_on:
+      - db
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    env_file: 
+      - ./.env
+    container_name: EmailServer
+    restart: always
+    ports:
+      - "${PORT}:${PORT}"
+
+    environment:
+      STATE: ${STATE}
+      PORT: ${PORT}
+      MONGODB: ${MONGODB}
+      JWT_SECRET: ${JWT_SECRET}
+      ADMIN_EMAIL: ${ADMIN_EMAIL}

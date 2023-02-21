@@ -1,0 +1,188 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type User {
+  """Mongo id created by MongoDB"""
+  _id: String
+
+  """User full name"""
+  fullName: String!
+
+  """User email that identify an user"""
+  email: String!
+  roles: [String!]!
+
+  """Flag that means if a user is active or not"""
+  isActive: Boolean!
+
+  """Created At"""
+  createdAt: DateTime!
+
+  """Updated At"""
+  updatedAt: DateTime!
+  lastUpdateBy: User!
+}
+
+"""
+A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
+"""
+scalar DateTime
+
+type AuthResponse {
+  """Token that identifies an user"""
+  token: String!
+
+  """User identified"""
+  user: User!
+}
+
+type EmailMessage {
+  """Mongo id created by MongoDB"""
+  _id: String
+
+  """Owner of email"""
+  user: User!
+
+  """Source user of email"""
+  from: String!
+
+  """Destinity users of email"""
+  to: [String!]!
+
+  """Destinity users of email in copy"""
+  cc: [String!]
+
+  """Email subject is required"""
+  subject: String!
+
+  """Email body message is required"""
+  message: String!
+
+  """Flag is read is required"""
+  isRead: Boolean!
+
+  """Email Tray that can be inbox, outbox or recycle"""
+  tray: String!
+
+  """Created At is an email date"""
+  createdAt: DateTime!
+
+  """Updated At"""
+  updatedAt: DateTime!
+}
+
+type Query {
+  users(
+    """Valid roles than can be: user, super user and admin"""
+    roles: [ValidRoles!]
+
+    """Query limit"""
+    limit: Int
+
+    """Query offset or skip"""
+    offset: Int
+  ): [User!]!
+  user(id: String!): User!
+  revalidateToken: AuthResponse!
+  emailMessages(
+    """Valid trays than can be: inbox, outbox, recycle"""
+    tray: ValidTray!
+
+    """Query limit"""
+    limit: Int
+
+    """Query offset or skip"""
+    offset: Int
+  ): [EmailMessage!]!
+  countEmailMessages(
+    """Valid trays than can be: inbox, outbox, recycle"""
+    tray: ValidTray!
+  ): Int!
+  emailMessage(id: String!): EmailMessage!
+}
+
+enum ValidRoles {
+  admin
+  user
+  superUser
+}
+
+enum ValidTray {
+  inbox
+  outbox
+  recycle
+}
+
+type Mutation {
+  updateUser(updateUserInput: UpdateUserInput!): User!
+  blockUser(id: String!): User!
+  signUp(signupInput: SignUpInput!): AuthResponse!
+  login(loginInput: LoginInput!): AuthResponse!
+  createEmailMessage(createEmailMessageInput: CreateEmailMessageInput!): EmailMessage!
+  updateEmailMessage(updateEmailMessageInput: UpdateEmailMessageInput!): EmailMessage!
+  removeEmailMessage(id: String!): EmailMessage!
+}
+
+input UpdateUserInput {
+  """User full name is required."""
+  name: String
+
+  """User email is required."""
+  email: String
+
+  """User password is required."""
+  password: String
+
+  """User Mongo id"""
+  id: String!
+
+  """Valid roles than can be: user, super user and admin"""
+  roles: [ValidRoles!]
+
+  """Flag that means if a user is active or not"""
+  isActive: Boolean
+}
+
+input SignUpInput {
+  """User email that identify an user"""
+  email: String!
+
+  """User full name"""
+  fullName: String!
+
+  """Password of a user is required."""
+  password: String!
+}
+
+input LoginInput {
+  """User email that identify an user"""
+  email: String!
+
+  """Password of a user is required."""
+  password: String!
+}
+
+input CreateEmailMessageInput {
+  """Destinity users of email"""
+  to: [String!]!
+
+  """Destinity users of email in copy"""
+  cc: [String!]
+
+  """Email subject is required"""
+  subject: String!
+
+  """Email body message is required"""
+  message: String!
+}
+
+input UpdateEmailMessageInput {
+  id: String!
+
+  """Flag is read is required"""
+  isRead: Boolean
+
+  """Email Tray that can be inbox, outbox or recycle"""
+  tray: ValidTray
+}
