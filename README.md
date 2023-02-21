@@ -15,7 +15,7 @@ _These instructions let get a copy of project for testing and developing._
 
 _Clone the project in your PC:_
 
-- Clone the [EmailMessagesServer](https://github.com/leoerickp/FoodForFree_Mircroservices.git).
+- Clone the [EmailMessagesServer](https://github.com/leoerickp/EmailMessagesServer.git).
 
 ## Config
 
