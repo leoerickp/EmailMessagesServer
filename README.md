@@ -41,6 +41,9 @@ _Into the project folder:_
 docker-compose -f docker-compose.prod.yml --env-file .env.prod up --build
 ```
 
+- To init database with test data you can execute:
+  **http://localhost:3001/api/seed**
+
 ## Frontend Food for free
 
 _The Frontend code repostory is available in:_ [EmailMessages-Frontend](https://github.com/leoerickp/EmailMessagesFrontend.git).
