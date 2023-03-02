@@ -1,7 +1,7 @@
 import { CreateEmailMessageInput } from './create-email-message.input';
 import { InputType, Field } from '@nestjs/graphql';
 import { IsBoolean, IsEnum, IsMongoId, IsOptional } from 'class-validator';
-import { ValidTray } from 'src/email-messages/enums/valid-tray.enum';
+import { ValidTray } from '../../enums/valid-tray.enum';
 
 @InputType()
 export class UpdateEmailMessageInput /*extends PartialType(CreateEmailMessageInput)*/ {

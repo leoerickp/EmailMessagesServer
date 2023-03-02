@@ -4,7 +4,7 @@ import { EmailMessage } from './entities/email-message.entity';
 import { CreateEmailMessageInput, UpdateEmailMessageInput } from './dto/inputs';
 import { UseGuards } from '@nestjs/common';
 import { JwtAuthGuard } from '../auth/guards/jwt-auth/jwt-auth.guard';
-import { CurrentUser } from 'src/auth/decorators/current-user.decorator';
+import { CurrentUser } from '../auth/decorators/current-user.decorator';
 import { User } from '../users/entities/user.entity';
 import { PaginationArgs } from '../common/dto/args/pagination.arg';
 import { ValidTrayArgs } from './dto/args/tray.arg';

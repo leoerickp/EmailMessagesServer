@@ -5,8 +5,8 @@ import { MongooseModule } from '@nestjs/mongoose';
 import { EmailMessage, EmailMessageSchema } from './entities/email-message.entity';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { UsersModule } from '../users/users.module';
-import { MessagesWsModule } from 'src/messages-ws/messages-ws.module';
-import { MessagesWsService } from 'src/messages-ws/messages-ws.service';
+import { MessagesWsModule } from '../messages-ws/messages-ws.module';
+import { MessagesWsService } from '../messages-ws/messages-ws.service';
 
 @Module({
   providers: [EmailMessagesResolver, EmailMessagesService, MessagesWsService],
