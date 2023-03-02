@@ -3,11 +3,11 @@ import { UsersService } from './users.service';
 import { User } from './entities/user.entity';
 import { CreateUserInput, UpdateUserInput } from './dto/inputs';
 import { UseGuards } from '@nestjs/common';
-import { JwtAuthGuard } from 'src/auth/guards/jwt-auth/jwt-auth.guard';
+import { JwtAuthGuard } from '../auth/guards/jwt-auth/jwt-auth.guard';
 import { ValidRolesArgs } from './dto/args/roles.arg';
-import { PaginationArgs } from 'src/common/dto/args/pagination.arg';
-import { ParseMongoIdPipe } from 'src/common/pipes/parse-mongo-id.pipe';
-import { CurrentUser } from 'src/auth/decorators/current-user.decorator';
+import { PaginationArgs } from '../common/dto/args/pagination.arg';
+import { ParseMongoIdPipe } from '../common/pipes/parse-mongo-id.pipe';
+import { CurrentUser } from '../auth/decorators/current-user.decorator';
 
 @Resolver(() => User)
 @UseGuards(JwtAuthGuard)

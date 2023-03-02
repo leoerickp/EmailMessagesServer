@@ -38,7 +38,7 @@ _Into the project folder:_
 - Execute the following command:
 
 ```console
-docker-compose -f docker-compose.prod.yml up --build
+docker-compose -f docker-compose.prod.yml --env-file .env.prod up --build
 ```
 
 ## Frontend Food for free
